@@ -1,0 +1,89 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.links {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    /* background-color: rgba(0, 0, 0, 0.5);*/
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100%; /* Toma el 100% de la altura de la pantalla */
+}
+
+.search-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.adv-search-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea los elementos a la izquierda */
+    text-align: left;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+.search-input {
+    width: 400px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 20px;
+    border: 1px solid #dcdcdc;
+    margin-bottom: 20px;
+    outline: none;
+}
+
+/* Efecto en el input cuando está enfocado */
+.search-input:focus {
+    border-color: #4285f4;
+}
+
+.search-button {
+    width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* Efecto en el botón cuando se pasa el mouse sobre él */
+.search-button:hover {
+    background-color: #357ae8;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.adv-search-form label {
+    font-size: 12px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    width: 50%;
+}
+
+.adv-search-form button {
+    width: 100%;
+}

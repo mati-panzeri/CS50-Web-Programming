@@ -1,0 +1,23 @@
+# Ignorar archivos de Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Ignorar base de datos SQLite
+db.sqlite3
+
+# Ignorar archivos de migraciones (opcional, si no quieres subirlas)
+# encyclopedia/migrations/
+
+# Ignorar archivos temporales de sistema operativo
+*.log
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db
+
+# Ignorar entornos virtuales
+env/
+venv/
+ENV/
+.venv/

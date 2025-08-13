@@ -9,6 +9,16 @@ class SearchForm(forms.Form):
         'class': 'search'
         }))
 
+class NewPageForm(forms.Form):
+    title = forms.CharField(label='', max_length=100, widget=forms.TextInput(attrs={
+        'placeholder': 'Enter Title',
+        'class': 'form-control'
+    }))
+    content = forms.CharField(label='', widget=forms.Textarea(attrs={
+        'placeholder': 'Enter Content',
+        'class': 'textarea form-control',
+    }))
+
 def index(request):
     return render(request, "encyclopedia/index.html", {
         "entries": util.list_entries(),
@@ -43,3 +53,24 @@ def search(request):
                 "entries": results,
                 "form": SearchForm()
             })
+
+def new_page(request):
+    if request.method == "POST":
+        form = NewPageForm(request.POST)
+        if form.is_valid():
+            title = form.cleaned_data["title"].strip()
+            content = form.cleaned_data["content"].strip()
+            if title and content:
+                util.save_entry(title, content)
+                return redirect(reverse("title", args=[title]))
+            else:
+                return render(request, "encyclopedia/new_page.html", {
+                    "form": form,
+                    "error": "Title and content cannot be empty."
+                })
+    else:
+        form = NewPageForm()
+
+    return render(request, "encyclopedia/new_page.html", {
+        "form_new_entry": form
+    })

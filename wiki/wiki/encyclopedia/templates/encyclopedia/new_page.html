@@ -1,0 +1,21 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Crear Nueva Página
+{% endblock %}
+
+{% block body %}
+    <h2>Crear Nueva Página</h2>
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <form action="{% url 'new_page' %}" method="post" class="p4">
+                {% csrf_token %}
+                {{ form_new_entry }}
+                <button type="submit">Crear Página</button>
+            </form>
+            {% if error %}
+                <div style="color: red; margin-top: 10px;">{{ error }}</div>
+            {% endif %}
+        </div>
+    </div>"
+{% endblock %}

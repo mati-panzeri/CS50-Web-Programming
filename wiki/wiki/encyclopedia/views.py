@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django import forms
 from . import util
+import random
 
 class SearchForm(forms.Form):
     q = forms.CharField(label='', max_length=100, widget=forms.TextInput(attrs={
@@ -95,3 +96,9 @@ def edit(request, title):
             "entry": entry,
             "form_edit_entry": form
     })
+
+def random_page(request):
+    entries = util.list_entries()
+    if entries:
+        title = random.choice(entries)
+        return redirect(reverse("title", args=[title]))

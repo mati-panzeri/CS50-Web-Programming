@@ -74,3 +74,24 @@ def new_page(request):
     return render(request, "encyclopedia/new_page.html", {
         "form_new_entry": form
     })
+
+def edit(request, title):
+    if request.method == "POST":
+        form = NewPageForm(request.POST)
+        if form.is_valid():
+            title = form.cleaned_data["title"].strip()
+            content = form.cleaned_data["content"].strip()
+            if title and content:
+                util.save_entry(title, content)
+                return redirect(reverse("title", args=[title]))
+    else:
+        entry = util.get_entry(title)
+        if not entry:
+            return render(request, "encyclopedia/err.html")
+        form = NewPageForm(initial={"title": title, "content": entry})
+        form.fields["title"].widget.attrs['readonly'] = True
+        return render(request, "encyclopedia/edit.html", {
+            "title": title,
+            "entry": entry,
+            "form_edit_entry": form
+    })

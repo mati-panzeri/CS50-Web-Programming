@@ -4,6 +4,10 @@
     {{ title }}
 {% endblock %}
 
+{% block nav %}
+    <a href="{% url 'edit' title %}">Edit entry</a>
+{% endblock %}
+
 {% block body %}
     <h1>{{ title }}</h1>
 

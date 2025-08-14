@@ -9,10 +9,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ title }}</h1>
-
     <p>
-        {{ entry }}
+        {{ entry|safe }}
     </p>
-
 {% endblock %}

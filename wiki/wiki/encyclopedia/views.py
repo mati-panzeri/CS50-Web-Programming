@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django import forms
 from . import util
-import random
+import random, markdown2
+
 
 class SearchForm(forms.Form):
     q = forms.CharField(label='', max_length=100, widget=forms.TextInput(attrs={
@@ -30,9 +31,10 @@ def title(request, title):
     entry = util.get_entry(title)
 
     if entry:
+            entry_html = markdown2.markdown(entry)
             return render(request, f"encyclopedia/entry.html", {
                 "title": title.capitalize(),
-                "entry": entry
+                "entry": entry_html
             })
     else:
         return render (request, "encyclopedia/err.html")

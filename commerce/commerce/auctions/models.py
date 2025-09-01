@@ -12,6 +12,7 @@ class auction_listings(models.Model):
     current_bid = models.FloatField(blank=True, null=True)
     image_url = models.URLField(blank=True)
     category = models.CharField(max_length=64, blank=True)
+    active = models.BooleanField(default=True)
 
 class bids(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bids")

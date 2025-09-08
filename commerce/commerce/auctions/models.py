@@ -12,6 +12,7 @@ class auction_listings(models.Model):
     current_bid = models.FloatField(blank=True, null=True)
     image_url = models.URLField(blank=True)
     category = models.CharField(max_length=64, blank=True)
+    listed_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_listings")
     active = models.BooleanField(default=True)
 
 class bids(models.Model):
@@ -23,3 +24,6 @@ class comments(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
     listing = models.ForeignKey(auction_listings, on_delete=models.CASCADE, related_name="comments")
 
+class watchlist(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="watchlist")
+    listing = models.ForeignKey(auction_listings, on_delete=models.CASCADE, related_name="watchlisted_by")
